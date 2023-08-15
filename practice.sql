@@ -159,3 +159,53 @@ VALUES ('YOX', 155, 100, 555, 1, 5000.0, 4000.0, 2),
 | IdCategoria  | int         | YES  | MUL | NULL    |                |
 +--------------+-------------+------+-----+---------+----------------+
 ;
+
+SELECT *
+FROM persona
+WHERE id_tipo_persona = 3;
+
+SELECT id_persona, nombre
+FROM persona
+WHERE id_tipo_persona = 3;
+
+SELECT id_persona, nombre
+FROM persona
+WHERE id_tipo_persona = 3
+AND nombre LIKE '%d%';
+
+SELECT P.id_persona, P.Nombre, TP.descripcion AS rol, G.descripcion AS genero
+FROM persona AS P
+INNER JOIN tipo_persona AS TP
+ON P.id_tipo_persona = TP.id_tipo_persona
+INNER JOIN genero AS G
+ON P.id_genero = G.id_genero;
+
+CREATE VIEW lstPersona AS
+SELECT P.id_persona, P.nombre, TP.descripcion AS rol, G.descripcion AS genero
+FROM persona AS P
+INNER JOIN tipo_persona AS TP
+ON P.id_tipo_persona = TP.id_tipo_persona
+INNER JOIN genero AS G
+ON P.id_genero = G.id_genero;
+
+SELECT id_producto, nombre, precio_venta
+FROM producto
+WHERE precio_venta
+BETWEEN 2500 AND 6000;
+
+SELECT id_producto, nombre, valor_compra, stock, (stock * valor_compra) AS TOTAL
+FROM producto
+WHERE precio_venta
+BETWEEN 2500 AND 6000;
+
+SELECT id_producto, nombre, valor_compra, stock, (stock*valor_compra) AS total
+FROM producto
+WHERE precio_venta
+BETWEEN 2500 and 6000
+ORDER BY nombre ASC;
+
+SELECT id_producto, nombre, valor_compra, stock, ( stock * valor_compra ) AS total
+FROM producto 
+WHERE precio_venta 
+BETWEEN 2500 AND 1000000
+ORDER BY id_producto DESC;
